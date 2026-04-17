@@ -1,0 +1,681 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>SRT Coffee | كوفي شبابي</title>
+  <meta name="description" content="SRT Coffee - منيو، حجز، تواصل. تصميم نيلي فاخر." />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#070A16;
+      --panel:#0B1026;
+      --panel2:#0D1430;
+      --text:#E9ECFF;
+      --muted:#AEB6E6;
+      --brand:#4F46E5;      /* indigo */
+      --brand2:#7C3AED;     /* purple */
+      --line:rgba(255,255,255,.10);
+      --shadow: 0 20px 60px rgba(0,0,0,.45);
+      --radius: 22px;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:"Cairo", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background:
+        radial-gradient(1200px 700px at 15% 10%, rgba(79,70,229,.35), transparent 60%),
+        radial-gradient(900px 600px at 90% 0%, rgba(124,58,237,.22), transparent 55%),
+        radial-gradient(800px 500px at 50% 95%, rgba(79,70,229,.18), transparent 55%),
+        var(--bg);
+      color:var(--text);
+      overflow-x:hidden;
+    }
+
+    a{color:inherit; text-decoration:none}
+    .container{width:min(1150px, 92vw); margin-inline:auto}
+
+    /* Top bar */
+    header{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter: blur(14px);
+      background: rgba(7,10,22,.55);
+      border-bottom:1px solid var(--line);
+    }
+    .nav{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:14px 0;
+      gap:12px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:12px;
+      min-width: 200px;
+    }
+    .logo{
+      width:42px; height:42px; border-radius:14px;
+      background:
+        radial-gradient(circle at 30% 25%, rgba(255,255,255,.25), transparent 55%),
+        linear-gradient(135deg, var(--brand), var(--brand2));
+      box-shadow: 0 10px 30px rgba(79,70,229,.25);
+      border:1px solid rgba(255,255,255,.18);
+      position:relative;
+    }
+    .logo:after{
+      content:"SRT";
+      position:absolute; inset:0;
+      display:grid; place-items:center;
+      font-weight:800; letter-spacing:.5px;
+      font-size:14px;
+      color:white;
+      text-shadow: 0 6px 18px rgba(0,0,0,.35);
+      direction:ltr;
+    }
+    .brand h1{
+      margin:0;
+      font-size:16px;
+      line-height:1.15;
+      font-weight:800;
+    }
+    .brand p{
+      margin:0;
+      color:var(--muted);
+      font-size:12px;
+      line-height:1.2;
+    }
+
+    .navlinks{
+      display:flex; align-items:center; gap:10px;
+      flex-wrap:wrap;
+      justify-content:center;
+    }
+    .chip{
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      color:var(--muted);
+      font-size:13px;
+      transition:.25s ease;
+    }
+    .chip:hover{transform: translateY(-1px); border-color: rgba(79,70,229,.45); color:var(--text)}
+    .cta{
+      display:flex; align-items:center; gap:10px;
+      min-width: 200px;
+      justify-content:flex-end;
+    }
+    .btn{
+      border:0;
+      cursor:pointer;
+      padding:10px 14px;
+      border-radius:14px;
+      font-weight:700;
+      font-size:13px;
+      color:white;
+      background: linear-gradient(135deg, var(--brand), var(--brand2));
+      box-shadow: 0 12px 35px rgba(79,70,229,.28);
+      border:1px solid rgba(255,255,255,.18);
+      transition:.25s ease;
+      white-space:nowrap;
+    }
+    .btn:hover{transform: translateY(-1px); filter:brightness(1.05)}
+    .btn.ghost{
+      background: rgba(255,255,255,.04);
+      box-shadow:none;
+      color:var(--text);
+    }
+
+    /* Hero */
+    .hero{padding:38px 0 18px}
+    .heroGrid{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap:18px;
+      align-items:stretch;
+    }
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .heroMain{
+      padding:22px;
+      position:relative;
+      min-height: 250px;
+    }
+    .heroMain:before{
+      content:"";
+      position:absolute; inset:-2px;
+      background:
+        radial-gradient(400px 260px at 20% 30%, rgba(79,70,229,.28), transparent 60%),
+        radial-gradient(380px 260px at 75% 30%, rgba(124,58,237,.18), transparent 60%);
+      pointer-events:none;
+      filter: blur(2px);
+      opacity:.9;
+    }
+    .heroMain > *{position:relative}
+    .badge{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.16);
+      background: rgba(0,0,0,.20);
+      color:var(--muted);
+      font-size:13px;
+      width:fit-content;
+    }
+    .dot{
+      width:8px; height:8px; border-radius:999px;
+      background: var(--brand);
+      box-shadow: 0 0 0 6px rgba(79,70,229,.18);
+    }
+    .heroTitle{
+      margin:12px 0 8px;
+      font-size:34px;
+      line-height:1.15;
+      font-weight:900;
+      letter-spacing:.2px;
+    }
+    .heroTitle span{color:#C9CCFF}
+    .heroDesc{
+      margin:0;
+      color:var(--muted);
+      font-size:15px;
+      line-height:1.8;
+      max-width: 60ch;
+    }
+    .heroActions{
+      display:flex; gap:10px; flex-wrap:wrap;
+      margin-top:14px;
+    }
+
+    .heroSide{
+      padding:18px;
+      display:grid;
+      gap:12px;
+    }
+    .stat{
+      padding:14px;
+      border-radius:18px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.03);
+    }
+    .stat .k{color:var(--muted); font-size:12px}
+    .stat .v{font-size:18px; font-weight:900; margin-top:4px}
+    .stat .s{color:var(--muted); font-size:12px; margin-top:2px}
+
+    /* Menu section */
+    .section{
+      padding:18px 0 40px;
+    }
+    .sectionHead{
+      display:flex; align-items:flex-end; justify-content:space-between;
+      gap:14px;
+      margin: 12px 0 14px;
+      flex-wrap:wrap;
+    }
+    .sectionHead h2{
+      margin:0;
+      font-size:20px;
+      font-weight:900;
+    }
+    .sectionHead p{
+      margin:0;
+      color:var(--muted);
+      font-size:13px;
+    }
+
+    .controls{
+      display:flex; gap:10px; flex-wrap:wrap;
+      width:100%;
+    }
+    .search{
+      flex:1;
+      min-width: 220px;
+      display:flex; align-items:center; gap:10px;
+      padding:12px 14px;
+      border-radius:16px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.03);
+    }
+    .search input{
+      width:100%;
+      background:transparent;
+      border:0;
+      outline:none;
+      color:var(--text);
+      font-size:14px;
+      font-family:inherit;
+    }
+    .filters{
+      display:flex; gap:8px; flex-wrap:wrap;
+    }
+    .filterBtn{
+      padding:10px 12px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      color:var(--muted);
+      font-weight:800;
+      font-size:12px;
+      cursor:pointer;
+      transition:.2s ease;
+    }
+    .filterBtn.active{
+      color:var(--text);
+      border-color: rgba(79,70,229,.55);
+      background: rgba(79,70,229,.14);
+    }
+    .filterBtn:hover{transform: translateY(-1px); color:var(--text)}
+
+    .menuGrid{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:12px;
+      margin-top: 14px;
+    }
+    .item{
+      padding:14px;
+      border-radius:20px;
+      border:1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      transition:.2s ease;
+    }
+    .item:hover{
+      transform: translateY(-2px);
+      border-color: rgba(79,70,229,.45);
+    }
+    .itemTop{
+      display:flex; align-items:flex-start; justify-content:space-between;
+      gap:10px;
+    }
+    .item h3{
+      margin:0;
+      font-size:15px;
+      font-weight:900;
+    }
+    .tag{
+      font-size:11px;
+      font-weight:900;
+      color:#D9DCFF;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.16);
+      background: rgba(79,70,229,.12);
+      white-space:nowrap;
+    }
+    .price{
+      margin-top:10px;
+      display:flex; align-items:center; justify-content:space-between;
+      color:var(--muted);
+      font-size:12px;
+    }
+    .price strong{
+      color:var(--text);
+      font-size:16px;
+      letter-spacing:.2px;
+    }
+
+    /* Footer */
+    footer{
+      padding:22px 0 36px;
+      border-top:1px solid var(--line);
+      background: rgba(0,0,0,.15);
+    }
+    .footerGrid{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap:14px;
+      align-items:start;
+    }
+    .footCard{
+      padding:16px;
+      border-radius: var(--radius);
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.03);
+    }
+    .footCard h3{margin:0 0 6px; font-size:15px}
+    .footCard p{margin:0; color:var(--muted); font-size:13px; line-height:1.8}
+    .miniRow{
+      margin-top:10px;
+      display:flex; gap:10px; flex-wrap:wrap;
+    }
+    .mini{
+      padding:10px 12px;
+      border-radius:14px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      font-size:12px;
+      color:var(--muted);
+    }
+
+    /* Responsive */
+    @media (max-width: 980px){
+      .heroGrid{grid-template-columns:1fr}
+      .cta{min-width:auto}
+      .menuGrid{grid-template-columns: repeat(2, 1fr)}
+      .footerGrid{grid-template-columns:1fr}
+    }
+    @media (max-width: 560px){
+      .brand{min-width:auto}
+      .menuGrid{grid-template-columns:1fr}
+      .heroTitle{font-size:28px}
+      .chip{font-size:12px}
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="container">
+      <div class="nav">
+        <div class="brand">
+          <div class="logo" aria-hidden="true"></div>
+          <div>
+            <h1 dir="ltr">SRT Coffee</h1>
+            <p>كوفي شبابي • Indigo Luxury</p>
+          </div>
+        </div>
+
+        <nav class="navlinks" aria-label="روابط">
+          <a class="chip" href="#menu">المنيو</a>
+          <a class="chip" href="#about">عن الكوفي</a>
+          <a class="chip" href="#contact">التواصل</a>
+        </nav>
+
+        <div class="cta">
+          <button class="btn ghost" id="toggleDir" type="button">EN / AR</button>
+          <a class="btn" href="#menu">اطلب الآن</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container">
+        <div class="heroGrid">
+          <div class="card heroMain">
+            <div class="badge"><span class="dot"></span> أجواء شبابية • نكهات قوية • ستايل فخم</div>
+            <h2 class="heroTitle">
+              أهلاً بيك بـ <span dir="ltr">SRT Coffee</span>
+            </h2>
+            <p class="heroDesc">
+              موقع منيو مرتب وسريع — ابحث عن طلبك، فلتر حسب القسم، وشوف الأسعار بكل وضوح.
+              (ألوان نيلي فخم مثل ما طلبت ✨)
+            </p>
+            <div class="heroActions">
+              <a class="btn" href="#menu">شوف المنيو</a>
+              <a class="btn ghost" href="#contact">موقعنا/تواصل</a>
+            </div>
+          </div>
+
+          <div class="card heroSide">
+            <div class="stat">
+              <div class="k">القسم الأكثر طلباً</div>
+              <div class="v">مشروبات باردة</div>
+              <div class="s">ميلك شيك • موهيتو • آيس تي</div>
+            </div>
+            <div class="stat">
+              <div class="k">ستايل المكان</div>
+              <div class="v">شبابي • رايق</div>
+              <div class="s">تصميم نيلي فاخر</div>
+            </div>
+            <div class="stat">
+              <div class="k">ملاحظة</div>
+              <div class="v">أسعار بالدينار</div>
+              <div class="s">تقدر تغيرها بسهولة من الكود</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="section" id="about">
+      <div class="container">
+        <div class="sectionHead">
+          <div>
+            <h2>عن <span dir="ltr">SRT Coffee</span></h2>
+            <p>كوفي شبابي — قهوة، عصائر، حلويات، وأركيلة… كله بمكان واحد.</p>
+          </div>
+        </div>
+
+        <div class="card" style="padding:18px">
+          <p style="margin:0;color:var(--muted);line-height:1.9;font-size:14px">
+            هذا قالب جاهز ومرتب، تقدر تضيف: صور، لوكيشن Google Maps، رقم واتساب، حسابات السوشيال…
+            وإذا تحب أخليه نسخة أقوى (صفحة طلب + سلة + واتساب مباشرة) بس كلّفني شتريد بالضبط.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- MENU -->
+    <section class="section" id="menu">
+      <div class="container">
+        <div class="sectionHead">
+          <div>
+            <h2>المنيو</h2>
+            <p>ابحث أو فلتر حسب القسم.</p>
+          </div>
+        </div>
+
+        <div class="controls">
+          <div class="search" role="search">
+            <span aria-hidden="true">🔎</span>
+            <input id="q" type="search" placeholder="ابحث مثل: موهيتو / كريب / أركيلة..." />
+          </div>
+
+          <div class="filters" id="filters" aria-label="فلاتر الأقسام">
+            <!-- buttons injected -->
+          </div>
+        </div>
+
+        <div class="menuGrid" id="grid" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="section" id="contact">
+      <div class="container">
+        <div class="sectionHead">
+          <div>
+            <h2>التواصل</h2>
+            <p>خلي معلوماتك هنا (واتساب/إنستا/فيس/لوكيشن).</p>
+          </div>
+        </div>
+
+        <div class="footerGrid">
+          <div class="footCard">
+            <h3>معلومات سريعة</h3>
+            <p>
+              📍 العنوان: اكتب عنوان الكوفي هنا<br/>
+              🕒 الدوام: اكتب أوقات الدوام هنا<br/>
+              📞 واتساب: اكتب الرقم هنا
+            </p>
+            <div class="miniRow">
+              <span class="mini">Instagram: @srtcoffee</span>
+              <span class="mini">Facebook: SRT Coffee</span>
+              <span class="mini">TikTok: @srtcoffee</span>
+            </div>
+          </div>
+
+          <div class="footCard">
+            <h3>طلب سريع (اختياري)</h3>
+            <p>
+              إذا تريد زر “اطلب واتساب” جاهز يفتح لك رسالة مع اسم الطلب —
+              أنطيك نسخة مطورة بس قلّي رقم الواتساب شنو.
+            </p>
+            <div class="miniRow">
+              <a class="btn" href="#menu" style="display:inline-flex;align-items:center;gap:8px">☕ رجوع للمنيو</a>
+              <button class="btn ghost" type="button" id="scrollTop">⬆️ للأعلى</button>
+            </div>
+          </div>
+        </div>
+
+        <p style="margin:14px 0 0;color:rgba(255,255,255,.35);font-size:12px">
+          © <span id="year"></span> SRT Coffee • Designed in Indigo.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer></footer>
+
+  <script>
+    // ====== MENU DATA (من الصورة) ======
+    const MENU = [
+      // حلويات/مشروبات ساخنة (يسار)
+      { name: "نسكافيه البستان", price: 1000, cat: "مشروبات ساخنة" },
+      { name: "سحلب", price: 1500, cat: "مشروبات ساخنة" },
+      { name: "زهورات", price: 750, cat: "مشروبات ساخنة" },
+      { name: "كمون وليمون", price: 750, cat: "مشروبات ساخنة" },
+
+      { name: "آيس كريم مشكل", price: 1500, cat: "حلويات" },
+      { name: "آيس كريم البستان", price: 1500, cat: "حلويات" },
+      { name: "بنانا سبلت", price: 1500, cat: "حلويات" },
+      { name: "قهوة تركية", price: 1500, cat: "قهوة" },
+
+      { name: "كريب نوتيلا", price: 4000, cat: "حلويات" },
+      { name: "كريب أوريو", price: 5000, cat: "حلويات" },
+      { name: "كريب فستشي", price: 6000, cat: "حلويات" },
+      { name: "كريب فواكه", price: 5000, cat: "حلويات" },
+      { name: "كريب لوتس", price: 6000, cat: "حلويات" },
+
+      { name: "بانكيك نوتيلا", price: 4000, cat: "حلويات" },
+      { name: "بانكيك فواكه", price: 5000, cat: "حلويات" },
+      { name: "بانكيك أوريو", price: 5000, cat: "حلويات" },
+
+      { name: "وافل نوتيلا", price: 4000, cat: "حلويات" },
+      { name: "وافل لوتس", price: 5000, cat: "حلويات" },
+
+      { name: "صحن فواكه", price: 2500, cat: "فواكه" },
+      { name: "نكوش بزم البستان", price: 4000, cat: "حلويات" },
+
+      // يمين (أركيلة/بارد)
+      { name: "أركيلة صاج", price: 2000, cat: "أركيلة" },
+      { name: "أركيلة صاج بستان", price: 3000, cat: "أركيلة" },
+      { name: "أركيلة بايبلة", price: 4000, cat: "أركيلة" },
+      { name: "أركيلة ألمانية", price: 5000, cat: "أركيلة" },
+      { name: "أركيلة طبيعي VIP", price: 12000, cat: "أركيلة VIP" },
+
+      { name: "عصير طبيعي", price: 1000, cat: "عصائر" },
+      { name: "عصير VIP", price: 1500, cat: "عصائر" },
+      { name: "عصير كوكتيل", price: 2000, cat: "عصائر" },
+
+      { name: "ميلك شيك نكهات", price: 3000, cat: "مشروبات باردة" },
+      { name: "ميلك شيك أوريو", price: 4000, cat: "مشروبات باردة" },
+      { name: "ميلك شيك لوتس", price: 5000, cat: "مشروبات باردة" },
+
+      { name: "موهيتو", price: 3000, cat: "مشروبات باردة" },
+      { name: "شاي عادي", price: 500, cat: "مشروبات ساخنة" },
+      { name: "شاي نكهات", price: 750, cat: "مشروبات ساخنة" },
+
+      { name: "آيس تي", price: 2000, cat: "مشروبات باردة" },
+      { name: "آيس كوفي نكهات", price: 3000, cat: "مشروبات باردة" },
+
+      { name: "قهوة", price: 1000, cat: "قهوة" },
+      { name: "هوت شوكليت", price: 1000, cat: "مشروبات ساخنة" },
+
+      { name: "كاباشينو + نسكافيه", price: 500, cat: "مشروبات ساخنة" },
+      { name: "ماء", price: 250, cat: "إضافات" },
+    ];
+
+    const fmtIQD = (n) => new Intl.NumberFormat("en-US").format(n) + " د.ع";
+
+    const grid = document.getElementById("grid");
+    const q = document.getElementById("q");
+    const filters = document.getElementById("filters");
+
+    const CATS = ["الكل", ...Array.from(new Set(MENU.map(x => x.cat)))];
+
+    let activeCat = "الكل";
+
+    function renderFilters(){
+      filters.innerHTML = "";
+      CATS.forEach(cat => {
+        const b = document.createElement("button");
+        b.className = "filterBtn" + (cat === activeCat ? " active" : "");
+        b.type = "button";
+        b.textContent = cat;
+        b.onclick = () => { activeCat = cat; render(); renderFilters(); };
+        filters.appendChild(b);
+      });
+    }
+
+    function render(){
+      const term = (q.value || "").trim().toLowerCase();
+      const items = MENU.filter(x => {
+        const matchCat = activeCat === "الكل" ? true : x.cat === activeCat;
+        const matchTerm = term ? x.name.toLowerCase().includes(term) : true;
+        return matchCat && matchTerm;
+      });
+
+      grid.innerHTML = items.map(x => `
+        <article class="item">
+          <div class="itemTop">
+            <h3>${escapeHtml(x.name)}</h3>
+            <span class="tag">${escapeHtml(x.cat)}</span>
+          </div>
+          <div class="price">
+            <span>السعر</span>
+            <strong>${fmtIQD(x.price)}</strong>
+          </div>
+        </article>
+      `).join("");
+
+      if(items.length === 0){
+        grid.innerHTML = `
+          <div class="card" style="padding:18px; grid-column:1/-1">
+            <div style="color:var(--muted); line-height:1.9">
+              ماكو نتائج. جرّب كلمة ثانية أو رجّع الفلتر إلى "الكل".
+            </div>
+          </div>
+        `;
+      }
+    }
+
+    // Basic XSS escape
+    function escapeHtml(str){
+      return String(str)
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#039;");
+    }
+
+    // UI helpers
+    q.addEventListener("input", render);
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    document.getElementById("scrollTop").onclick = () =>
+      window.scrollTo({ top: 0, behavior: "smooth" });
+
+    // Optional: simple AR/EN direction toggle (layout only)
+    const toggleDir = document.getElementById("toggleDir");
+    let isRTL = true;
+    toggleDir.onclick = () => {
+      isRTL = !isRTL;
+      document.documentElement.dir = isRTL ? "rtl" : "ltr";
+      document.documentElement.lang = isRTL ? "ar" : "en";
+      // Just a small visual hint:
+      toggleDir.textContent = isRTL ? "EN / AR" : "AR / EN";
+    };
+
+    // init
+    renderFilters();
+    render();
+  </script>
+</body>
+</html>
